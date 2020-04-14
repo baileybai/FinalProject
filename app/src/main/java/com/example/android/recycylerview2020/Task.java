@@ -3,7 +3,7 @@ package com.example.android.recycylerview2020;
 public class Task {
     private String name;
     private String info;
-    private int taskNeededTime;
+    private float taskNeededTime;
 
     public Task(String name, String info, int taskNeededTime) {
         this.name = name;
@@ -27,7 +27,7 @@ public class Task {
         this.info = info;
     }
 
-    public int getTime() {
+    public float getTime() {
         return taskNeededTime;
     }
 

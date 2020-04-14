@@ -5,19 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".StartNewActivity">
-
-    <Button
-        android:layout_width="59dp"
-        android:layout_height="46dp"
-        android:layout_gravity="right"
-        android:text="+"
-        android:textSize="20dp" />
+    tools:context=".StartNewActivity"
+    android:padding="15dp">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="68dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center_horizontal"
         android:text="Add New Activity"
@@ -28,34 +22,29 @@
         android:id="@+id/activity_name"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:text="Activity Name"
-        android:textSize="24dp"
-        android:textStyle="bold"
+        android:hint="Activity Name"
         android:inputType="text"/>
 
     <EditText
         android:id="@+id/activity_time"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:text="Time needed"
-        android:textSize="24dp"
-        android:textStyle="bold"
+        android:hint="Time needed"
         android:inputType="text"/>
 
     <EditText
         android:id="@+id/side_note"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:text="Side Note"
-        android:textSize="24dp"
-        android:textStyle="bold"
+        android:hint="Side Note"
         android:inputType="text"/>
+
     <Button
+        android:id="@+id/Add_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_margin="10dp"
         android:onClick="GoBackToMainActivity"
-        android:text="ADD"
-        android:textSize="24dp"
-        android:textStyle="bold" />
+        android:text="ADD"/>
 </LinearLayout>

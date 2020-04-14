@@ -5,15 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="10dp"
     tools:context=".MainActivity">
 
-    <Button
-        android:layout_width="59dp"
-        android:layout_height="46dp"
-        android:layout_gravity="right"
-        android:onClick="addNewTask"
-        android:text="+"
-        android:textSize="20dp" />
 
     <TextView
         android:id="@+id/textView"
@@ -21,10 +15,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center_horizontal"
+        android:padding="10dp"
         android:text="Click the Task to Start"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:padding="10dp"/>
+        android:textSize="18sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
@@ -40,7 +33,6 @@
         android:text="Finished tasks"
         android:textSize="24dp"
         android:textStyle="bold" />
-
 
 </LinearLayout>
 

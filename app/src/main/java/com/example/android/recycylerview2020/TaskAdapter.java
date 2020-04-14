@@ -29,7 +29,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TasksViewHolder> {
     public void onBindViewHolder(TasksViewHolder holder, int position) {
         Task task = tasks.get(position);
         holder.getTaskNameView().setText(task.getName());
-        holder.getTaskTimeView().setText(task.getTime());
+        holder.getTaskTimeView().setText(String.valueOf(task.getTime()));
         holder.getTaskInfoView().setText(task.getInfo());
     }
 
