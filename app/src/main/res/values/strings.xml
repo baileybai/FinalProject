@@ -3,5 +3,7 @@
     <string name="TaskDescription">Task Description</string>
     <string name="taskTitle">Task Title</string>
     <string name="add">Add</string>
+    <string name="finishTaskTitle">What you have done</string>
+
 
 </resources>

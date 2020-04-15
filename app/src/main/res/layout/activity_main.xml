@@ -11,13 +11,12 @@
 
     <TextView
         android:id="@+id/textView"
+        style="@style/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center_horizontal"
-        android:padding="10dp"
-        android:text="Click the Task to Start"
-        android:textSize="18sp" />
+        android:text="Click the Task to Start"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"

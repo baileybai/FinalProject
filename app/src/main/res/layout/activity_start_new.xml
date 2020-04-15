@@ -9,14 +9,11 @@
     android:padding="15dp">
 
     <TextView
+        style="@style/title"
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center_horizontal"
-        android:text="Add New Activity"
-        android:textSize="30dp"
-        android:textStyle="bold" />
+        android:text="Add New Activity"/>
 
     <EditText
         android:id="@+id/activity_name"
