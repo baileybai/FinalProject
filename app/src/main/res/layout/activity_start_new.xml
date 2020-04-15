@@ -33,7 +33,7 @@
         android:inputType="text"/>
 
     <EditText
-        android:id="@+id/side_note"
+        android:id="@+id/activity_description"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:hint="Side Note"
@@ -45,6 +45,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="10dp"
-        android:onClick="GoBackToMainActivity"
+        android:onClick="addTask"
         android:text="ADD"/>
 </LinearLayout>

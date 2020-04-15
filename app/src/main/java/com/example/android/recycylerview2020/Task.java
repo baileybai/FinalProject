@@ -1,11 +1,13 @@
 package com.example.android.recycylerview2020;
 
-public class Task {
+import java.io.Serializable;
+
+public class Task implements Serializable {
     private String name;
     private String info;
     private float taskNeededTime;
 
-    public Task(String name, String info, int taskNeededTime) {
+    public Task(String name, String info, float taskNeededTime) {
         this.name = name;
         this.info = info;
         this.taskNeededTime = taskNeededTime;

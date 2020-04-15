@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,6 +19,9 @@ public class MainActivity extends AppCompatActivity {
 //This is a test hahaha
     TaskAdapter presAdapter;
     RecyclerView recyclerView;
+    List<Task> tasks;
+
+    final int REQUEST_CODE = 1;
 
 
     @Override
@@ -32,6 +36,21 @@ public class MainActivity extends AppCompatActivity {
         iniAdapter();
         iniRecyclerView();
     }
+    //2.0 Get new data after input
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+            if(requestCode == REQUEST_CODE){
+                if(resultCode ==RESULT_OK){
+                    assignText((Task)data.getSerializableExtra("Return"));
+                }
+            }
+    }
+
+    //2.1 Assign text for display
+    private void assignText(Task aReturn) {
+        tasks.add(aReturn);
+    }
 
     //1.2 update recycler view with new tasks
     private void iniRecyclerView() {
@@ -43,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
 
     //1.1 initialize data in adapter
     private void iniAdapter() {
-        List<Task> tasks;
         tasks = new ArrayList<>();
         presAdapter = new TaskAdapter(tasks, this);
         recyclerView.setAdapter(presAdapter);
@@ -53,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
     //0.1 start the second activity, go to startNewActivity
     public void addNewTask() {
         Intent i = new Intent(this, StartNewActivity.class);
-        startActivity(i);
+        startActivityForResult(i, REQUEST_CODE);
     }
 
     //0.2 start the third activity, go to finishedTask display
