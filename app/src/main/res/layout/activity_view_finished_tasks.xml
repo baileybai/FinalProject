@@ -9,8 +9,11 @@
     android:padding="15dp">
 
     <TextView
+        style="@style/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="casual"
+        android:textColor="#221684"
         android:text="@string/finishTaskTitle"
-        style="@style/title"/>
+        android:textStyle="bold"/>
 </LinearLayout>

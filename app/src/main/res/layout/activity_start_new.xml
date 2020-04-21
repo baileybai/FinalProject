@@ -5,36 +5,48 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".StartNewActivity"
-    android:padding="15dp">
+    android:padding="15dp"
+    tools:context=".StartNewActivity">
 
     <TextView
-        style="@style/title"
         android:id="@+id/textView"
+        style="@style/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add New Activity"/>
+        android:fontFamily="casual"
+        android:text="Add New Activity"
+        android:textColor="#221684"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/activity_name"
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="cursive"
         android:hint="Activity Name"
-        android:inputType="text"/>
+        android:inputType="text"
+        android:textColor="#808AFF"
+        android:textColorHint="#808AFF" />
 
     <EditText
         android:id="@+id/activity_time"
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="cursive"
         android:hint="Time needed"
-        android:inputType="text"/>
+        android:inputType="text"
+        android:textColor="#808AFF"
+        android:textColorHint="#808AFF" />
 
     <EditText
         android:id="@+id/activity_description"
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="cursive"
         android:hint="Side Note"
-        android:inputType="text"/>
+        android:inputType="text"
+        android:textColor="#808AFF"
+        android:textColorHint="#808AFF" />
 
     <Button
         android:id="@+id/Add_button"
@@ -42,6 +54,13 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="10dp"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="#00ACC1"
+        android:fontFamily="casual"
         android:onClick="addTask"
-        android:text="ADD"/>
+        android:text="ADD"
+        android:textColor="#221684"
+        android:textSize="24dp"
+        android:textStyle="bold" />
+
 </LinearLayout>

@@ -15,21 +15,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:fontFamily="casual"
         android:gravity="center_horizontal"
-        android:text="Click the Task to Start"/>
+        android:text="Click the Task to Start"
+        android:textColor="#221684"
+        android:textStyle="bold"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="531dp"
         android:layout_weight="1" />
 
     <Button
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="72dp"
         android:layout_gravity="center"
+        android:background="#FE6347"
+        android:fadeScrollbars="true"
+        android:fadingEdge="horizontal|vertical|none"
+        android:fontFamily="casual"
         android:onClick="FinishedTasks"
         android:text="Finished tasks"
+        android:textColor="#221684"
         android:textSize="24dp"
         android:textStyle="bold" />
 
