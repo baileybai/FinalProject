@@ -34,18 +34,17 @@ public class MainActivity extends AppCompatActivity {
     final int REQUEST_CODE = 1;
 
     //Firebase init
-//    FirebaseDatabase firebaseDatabase;
-//    DatabaseReference firebase_tasks;
-//    //Authentication
-//    private FirebaseAuth mFirebaseAuth;
-//    private FirebaseAuth.AuthStateListener mAuthStateListener;
-//    ChildEventListener childEventListener;
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference firebase_tasks;
+    //Authentication
+    private FirebaseAuth mFirebaseAuth;
+    private FirebaseAuth.AuthStateListener mAuthStateListener;
+    ChildEventListener childEventListener;
     //Constant
     private static final int RC_SIGN_IN = 1;
     private static final int RC_PHOTO_PICKER = 2;
 
-    FirebaseDatabase database;
-    DatabaseReference myRef;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,47 +58,41 @@ public class MainActivity extends AppCompatActivity {
         iniAdapter();
         iniRecyclerView();
 
-        database = FirebaseDatabase.getInstance();
-        System.out.println("Step 1");
-//        myRef = database.getReference("message");
-//        try {
-//            myRef.setValue("Hello, World!");
-//        }catch (Exception e){
-//            System.out.println("Error uploading");
-//        }
+
+
 
 
         //Firebase All here:
-//        mFirebaseAuth = FirebaseAuth.getInstance();
-//        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
-//            @Override
-//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-//
-//                List<AuthUI.IdpConfig> providers = Arrays.asList(
-//                        new AuthUI.IdpConfig.EmailBuilder().build(),
-//                        new AuthUI.IdpConfig.GoogleBuilder().build());
-//
-//                FirebaseUser user = firebaseAuth.getCurrentUser();
-//                if (user != null) {
-//                    // User is signed in
-//                    Toast.makeText(MainActivity.this, "You're now signed in. Welcome to FriendlyChat.", Toast.LENGTH_SHORT).show();
-//                } else {
-//                    // User is signed out
-//                    startActivityForResult(
-//                            AuthUI.getInstance()
-//                                    .createSignInIntentBuilder().setAvailableProviders(providers)
-//                                    .build(),
-//                            RC_SIGN_IN);
-//                }
-//            }
-//        };
-//        firebaseDatabase = FirebaseDatabase.getInstance();
-//        firebase_tasks = firebaseDatabase.getReference();
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+
+                List<AuthUI.IdpConfig> providers = Arrays.asList(
+                        new AuthUI.IdpConfig.EmailBuilder().build(),
+                        new AuthUI.IdpConfig.GoogleBuilder().build());
+
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    // User is signed in
+                    Toast.makeText(MainActivity.this, "You're now signed in. Welcome to FriendlyChat.", Toast.LENGTH_SHORT).show();
+                } else {
+                    // User is signed out
+                    startActivityForResult(
+                            AuthUI.getInstance()
+                                    .createSignInIntentBuilder().setAvailableProviders(providers)
+                                    .build(),
+                            RC_SIGN_IN);
+                }
+            }
+        };
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        firebase_tasks = firebaseDatabase.getReference();
     }
 
 //    3.0 push data to firebase
     void pushToFirebase(Task task){
-//        firebase_tasks.push().setValue(task);
+        firebase_tasks.push().setValue(task);
     }
 
     //2.0 Get new data after input
@@ -110,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                 if(resultCode ==RESULT_OK){
                     Task task = (Task)data.getSerializableExtra("Return");
                     assignText(task);
-//                    pushToFirebase(task);
+                    pushToFirebase(task);
                 }
             }
     }
