@@ -20,6 +20,7 @@ import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,16 +34,18 @@ public class MainActivity extends AppCompatActivity {
     final int REQUEST_CODE = 1;
 
     //Firebase init
-    FirebaseDatabase firebaseDatabase;
-    DatabaseReference firebase_tasks;
-    //Authentication
-    private FirebaseAuth mFirebaseAuth;
-    private FirebaseAuth.AuthStateListener mAuthStateListener;
-    ChildEventListener childEventListener;
+//    FirebaseDatabase firebaseDatabase;
+//    DatabaseReference firebase_tasks;
+//    //Authentication
+//    private FirebaseAuth mFirebaseAuth;
+//    private FirebaseAuth.AuthStateListener mAuthStateListener;
+//    ChildEventListener childEventListener;
     //Constant
     private static final int RC_SIGN_IN = 1;
     private static final int RC_PHOTO_PICKER = 2;
 
+    FirebaseDatabase database;
+    DatabaseReference myRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +58,16 @@ public class MainActivity extends AppCompatActivity {
 
         iniAdapter();
         iniRecyclerView();
+
+        database = FirebaseDatabase.getInstance();
+        System.out.println("Step 1");
+//        myRef = database.getReference("message");
+//        try {
+//            myRef.setValue("Hello, World!");
+//        }catch (Exception e){
+//            System.out.println("Error uploading");
+//        }
+
 
         //Firebase All here:
 //        mFirebaseAuth = FirebaseAuth.getInstance();
@@ -86,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
 
 //    3.0 push data to firebase
     void pushToFirebase(Task task){
-        firebase_tasks.push().setValue(task);
+//        firebase_tasks.push().setValue(task);
     }
 
     //2.0 Get new data after input
