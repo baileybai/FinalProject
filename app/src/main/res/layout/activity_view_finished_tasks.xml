@@ -4,16 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ViewFinishedTasks"
     android:orientation="vertical"
-    android:padding="15dp">
+    android:padding="15dp"
+    tools:context=".ViewFinishedTasks">
 
     <TextView
         style="@style/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="casual"
-        android:textColor="#221684"
         android:text="@string/finishTaskTitle"
-        android:textStyle="bold"/>
+        android:textColor="#221684"
+        android:textStyle="bold" />
 </LinearLayout>

@@ -4,8 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clipToPadding="true"
     android:orientation="vertical"
     android:padding="10dp"
+    app:cardCornerRadius="15dp"
     tools:context=".MainActivity">
 
 
@@ -19,19 +21,22 @@
         android:gravity="center_horizontal"
         android:text="Click the Task to Start"
         android:textColor="#221684"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="531dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:background="#D6ECFF"
+        />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="72dp"
         android:layout_gravity="center"
-        android:background="#FE6347"
+        android:background="@drawable/roundedborder"
+        android:backgroundTint="#FE6347"
         android:fadeScrollbars="true"
         android:fadingEdge="horizontal|vertical|none"
         android:fontFamily="casual"

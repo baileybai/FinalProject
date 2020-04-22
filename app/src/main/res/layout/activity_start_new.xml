@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#1825EFBD"
     android:orientation="vertical"
     android:padding="15dp"
     tools:context=".StartNewActivity">
@@ -55,10 +56,11 @@
         android:layout_gravity="center"
         android:layout_margin="10dp"
         android:layout_marginTop="40dp"
+        android:background="@drawable/roundedborder"
         android:backgroundTint="#00ACC1"
         android:fontFamily="casual"
         android:onClick="addTask"
-        android:text="ADD"
+        android:text="Add"
         android:textColor="#221684"
         android:textSize="24dp"
         android:textStyle="bold" />
