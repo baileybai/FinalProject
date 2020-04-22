@@ -63,6 +63,6 @@
         android:text="Add"
         android:textColor="#221684"
         android:textSize="24dp"
-        android:textStyle="bold" />
+        android:textStyle="italic" />
 
 </LinearLayout>
