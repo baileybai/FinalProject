@@ -35,6 +35,14 @@ public class StartNewActivity extends AppCompatActivity {
     }
 
     private boolean inputCheck(String name, String des, String time) {
+
+        try {
+            float temp = Float.parseFloat(time);
+        } catch (NumberFormatException ex) {
+            Toast.makeText(this, "Enter time in format like \"3.5\", or \"2\"", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
         if (name.trim().length() == 0) {
             Toast.makeText(this,"Name for the task is needed", Toast.LENGTH_SHORT).show();
             return false;
@@ -45,6 +53,8 @@ public class StartNewActivity extends AppCompatActivity {
             description.setText("");
             return true;
         }
+
+
         return true;
     }
 

@@ -5,23 +5,43 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.firebase.ui.auth.AuthUI;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-//This is a test hahaha
     TaskAdapter presAdapter;
     RecyclerView recyclerView;
     List<Task> tasks;
 
     final int REQUEST_CODE = 1;
+
+    //Firebase init
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference firebase_tasks;
+    //Authentication
+    private FirebaseAuth mFirebaseAuth;
+    private FirebaseAuth.AuthStateListener mAuthStateListener;
+    ChildEventListener childEventListener;
+    //Constant
+    private static final int RC_SIGN_IN = 1;
+    private static final int RC_PHOTO_PICKER = 2;
 
 
     @Override
@@ -35,14 +55,49 @@ public class MainActivity extends AppCompatActivity {
 
         iniAdapter();
         iniRecyclerView();
+
+        //Firebase All here:
+//        mFirebaseAuth = FirebaseAuth.getInstance();
+//        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
+//            @Override
+//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+//
+//                List<AuthUI.IdpConfig> providers = Arrays.asList(
+//                        new AuthUI.IdpConfig.EmailBuilder().build(),
+//                        new AuthUI.IdpConfig.GoogleBuilder().build());
+//
+//                FirebaseUser user = firebaseAuth.getCurrentUser();
+//                if (user != null) {
+//                    // User is signed in
+//                    Toast.makeText(MainActivity.this, "You're now signed in. Welcome to FriendlyChat.", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    // User is signed out
+//                    startActivityForResult(
+//                            AuthUI.getInstance()
+//                                    .createSignInIntentBuilder().setAvailableProviders(providers)
+//                                    .build(),
+//                            RC_SIGN_IN);
+//                }
+//            }
+//        };
+//        firebaseDatabase = FirebaseDatabase.getInstance();
+//        firebase_tasks = firebaseDatabase.getReference();
     }
+
+//    3.0 push data to firebase
+    void pushToFirebase(Task task){
+        firebase_tasks.push().setValue(task);
+    }
+
     //2.0 Get new data after input
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
             if(requestCode == REQUEST_CODE){
                 if(resultCode ==RESULT_OK){
-                    assignText((Task)data.getSerializableExtra("Return"));
+                    Task task = (Task)data.getSerializableExtra("Return");
+                    assignText(task);
+//                    pushToFirebase(task);
                 }
             }
     }
