@@ -60,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
 
         tasks = new ArrayList<>();
 
+        iniAdapter(tasks);
+        iniRecyclerView();
 
 
 
@@ -95,38 +97,19 @@ public class MainActivity extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
         firebase_tasks = firebaseDatabase.getReference().child("Task");
 
-        childEventListener = new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                assignText(dataSnapshot.getValue(Task.class));
-            }
 
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+        attachDataBaseReadListenser();
 
-            }
 
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
 
-            }
+    }
 
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+    //4.1 RESUME
+    protected void onResume() {
+        super.onResume();
 
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-//                    Toast.makeText(MainActivity.this, "Error in action", Toast.LENGTH_SHORT).show();
-            }
-        };
-        //TODO: can't add listener
-        firebaseDatabase.getReference().addChildEventListener(childEventListener);
-
+        attachDataBaseReadListenser();
         iniAdapter(tasks);
-        iniRecyclerView();
-
     }
 
 
@@ -137,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                     assignText(dataSnapshot.getValue(Task.class));
+                    iniRecyclerView();
                 }
 
                 @Override
@@ -197,7 +181,6 @@ public class MainActivity extends AppCompatActivity {
     private void iniAdapter(List<Task> tasks) {
         presAdapter = new TaskAdapter(tasks, this);
         recyclerView.setAdapter(presAdapter);
-
     }
 
 

@@ -7,6 +7,10 @@ public class Task implements Serializable {
     private String info;
     private float taskNeededTime;
 
+    public Task(){
+
+    }
+
     public Task(String name, String info, float taskNeededTime) {
         this.name = name;
         this.info = info;

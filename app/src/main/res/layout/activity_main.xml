@@ -7,7 +7,7 @@
     android:clipToPadding="true"
     android:orientation="vertical"
     android:padding="10dp"
-    app:cardCornerRadius="15dp"
+    app:cardCornerRadius="100dp"
     tools:context=".MainActivity">
 
 
