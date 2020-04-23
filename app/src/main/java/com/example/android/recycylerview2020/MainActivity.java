@@ -29,6 +29,19 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+//0.1 start the second activity, go to startNewActivity
+//0.2 start the third activity, go to finishedTask display
+//0.3 Create Menu
+
+//1.2 update recycler view with new tasks
+
+//2.0 Get new data after input
+//2.1 Assign text for display
+
+//3.0 push data to firebase
+//3.1 add listener
+
+//4.1 RESUME
 public class MainActivity extends AppCompatActivity {
     TaskAdapter presAdapter;
     RecyclerView recyclerView;
