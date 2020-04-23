@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -17,6 +18,8 @@ import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -55,8 +58,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        iniAdapter();
-        iniRecyclerView();
+        tasks = new ArrayList<>();
 
 
 
@@ -86,11 +88,82 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
+
+
+
+
         firebaseDatabase = FirebaseDatabase.getInstance();
-        firebase_tasks = firebaseDatabase.getReference();
+        firebase_tasks = firebaseDatabase.getReference().child("Task");
+
+        childEventListener = new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                assignText(dataSnapshot.getValue(Task.class));
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+//                    Toast.makeText(MainActivity.this, "Error in action", Toast.LENGTH_SHORT).show();
+            }
+        };
+        //TODO: can't add listener
+        firebaseDatabase.getReference().addChildEventListener(childEventListener);
+
+        iniAdapter(tasks);
+        iniRecyclerView();
+
     }
 
-//    3.0 push data to firebase
+
+    //3.1 add listener
+    void attachDataBaseReadListenser() {
+        if (childEventListener == null) {
+            childEventListener = new ChildEventListener() {
+                @Override
+                public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                    assignText(dataSnapshot.getValue(Task.class));
+                }
+
+                @Override
+                public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                }
+
+                @Override
+                public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+                }
+
+                @Override
+                public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+//                    Toast.makeText(MainActivity.this, "Error in action", Toast.LENGTH_SHORT).show();
+                }
+            };
+            firebase_tasks.addChildEventListener(childEventListener);
+        }
+    }
+
+    //3.0 push data to firebase
     void pushToFirebase(Task task){
         firebase_tasks.push().setValue(task);
     }
@@ -102,7 +175,6 @@ public class MainActivity extends AppCompatActivity {
             if(requestCode == REQUEST_CODE){
                 if(resultCode ==RESULT_OK){
                     Task task = (Task)data.getSerializableExtra("Return");
-                    assignText(task);
                     pushToFirebase(task);
                 }
             }
@@ -122,12 +194,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //1.1 initialize data in adapter
-    private void iniAdapter() {
-        tasks = new ArrayList<>();
+    private void iniAdapter(List<Task> tasks) {
         presAdapter = new TaskAdapter(tasks, this);
         recyclerView.setAdapter(presAdapter);
 
     }
+
 
     //0.1 start the second activity, go to startNewActivity
     public void addNewTask() {

@@ -33,7 +33,7 @@ public class Task implements Serializable {
         return taskNeededTime;
     }
 
-    public void setTime(int photoId) {
+    public void setTime(float taskNeededTime) {
         this.taskNeededTime = taskNeededTime;
     }
 }
