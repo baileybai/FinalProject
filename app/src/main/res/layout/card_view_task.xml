@@ -11,8 +11,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#808AFF"
         android:orientation="vertical"
+        android:background="@drawable/roundedborder"
         android:padding="16dp">
 
         <TextView
@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="cursive"
             android:textColor="#721817"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             tools:text="Time needed: " />
 
@@ -42,6 +42,7 @@
             android:fontFamily="cursive"
             android:textColor="#721817"
             android:textStyle="bold"
+            android:textSize="18dp"
             tools:text="@string/TaskDescription" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>
