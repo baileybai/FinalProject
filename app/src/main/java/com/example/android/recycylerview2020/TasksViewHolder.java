@@ -35,16 +35,18 @@ public class TasksViewHolder extends RecyclerView.ViewHolder {
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "New Task added!", Toast.LENGTH_SHORT).show();
+
                 Intent i = new Intent(v.getContext(), DoingTask.class);
+                Task storedTask = tasks.get(getAdapterPosition());
                 i.putExtra("taskInfo", tasks.get(getAdapterPosition()));
+                Toast.makeText(context, "New Task added!", Toast.LENGTH_SHORT).show();
                 v.getContext().startActivity(i);
+
             }
         });
     }
 
     public TextView getTaskNameView() {
-
         return taskNameView;
     }
 
@@ -53,7 +55,6 @@ public class TasksViewHolder extends RecyclerView.ViewHolder {
     }
 
     public TextView getTaskInfoView() {
-
         return taskInfoView;
     }
 

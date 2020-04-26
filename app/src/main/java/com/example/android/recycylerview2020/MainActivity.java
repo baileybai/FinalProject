@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
 
     public final int REQUEST_CODE = 1;
 
-    public int hi = 1;
     //Firebase init
     FirebaseDatabase firebaseDatabase;
     DatabaseReference firebase_tasks;
@@ -59,12 +58,8 @@ public class MainActivity extends AppCompatActivity {
     ChildEventListener childEventListener;
     //Constant
     private static final int RC_SIGN_IN = 1;
-    private static final int RC_PHOTO_PICKER = 2;
 
 
-    public int hih(){
-        return hi;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,7 +114,25 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
     }
+
+    //4.3 delete finished task
+    void finishingTask(int pos){
+
+    }
+
+    //4.2 return from intent
+    private void returnFromIntent() {
+        if(getIntent() != null){
+            int result = (int) getIntent().getSerializableExtra("result");
+            if(result == 1){
+                finishingTask((int)getIntent().getSerializableExtra("taskPosition"));
+
+            }
+        }
+    }
+
 
     //4.1 RESUME
     protected void onResume() {
