@@ -2,11 +2,16 @@
 
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    android:background="@drawable/roundedborder">
+    android:background="@drawable/roundedborder"
+    app:cardBackgroundColor="@color/fui_transparent"
+    android:outlineProvider="background"
+    android:outlineAmbientShadowColor="@color/fui_transparent"
+    android:outlineSpotShadowColor="@color/fui_transparent">
 
     <LinearLayout
         android:layout_width="match_parent"
