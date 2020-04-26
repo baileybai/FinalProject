@@ -45,10 +45,11 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     TaskAdapter presAdapter;
     RecyclerView recyclerView;
-    List<Task> tasks;
+    public List<Task> tasks;
 
-    final int REQUEST_CODE = 1;
+    public final int REQUEST_CODE = 1;
 
+    public int hi = 1;
     //Firebase init
     FirebaseDatabase firebaseDatabase;
     DatabaseReference firebase_tasks;
@@ -61,6 +62,9 @@ public class MainActivity extends AppCompatActivity {
     private static final int RC_PHOTO_PICKER = 2;
 
 
+    public int hih(){
+        return hi;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -205,6 +209,8 @@ public class MainActivity extends AppCompatActivity {
 
     //0.2 start the third activity, go to finishedTask display
     public void FinishedTasks(View view) {
+        Intent i = new Intent(this, FinishedTaskList.class);
+        startActivity(i);
     }
     //0.3 Create Menu
     @Override

@@ -2,12 +2,17 @@ package com.example.android.recycylerview2020;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.gms.tasks.Tasks;
+
+import java.util.List;
 
 
 public class TasksViewHolder extends RecyclerView.ViewHolder {
@@ -16,6 +21,7 @@ public class TasksViewHolder extends RecyclerView.ViewHolder {
     private TextView taskTimeView;
     private TextView taskInfoView;
     private Context context;
+    List<Task> tasks;
 
     @SuppressLint("WrongViewCast")
     public TasksViewHolder(View itemView, final Context context) {
@@ -30,6 +36,9 @@ public class TasksViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, "New Task added!", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(v.getContext(), DoingTask.class);
+                i.putExtra("taskInfo", tasks.get(getAdapterPosition()));
+                v.getContext().startActivity(i);
             }
         });
     }
@@ -48,7 +57,13 @@ public class TasksViewHolder extends RecyclerView.ViewHolder {
         return taskInfoView;
     }
 
+    public CardView getCardView(){
+        return cardView;
+    }
 
+    public void iniTasks(List<Task> tasks){
+        this.tasks = tasks;
+    }
 }
 
 
