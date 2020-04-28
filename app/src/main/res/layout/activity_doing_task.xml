@@ -15,6 +15,20 @@
         style="@style/title"
         android:id="@+id/doing_field_task_name"/>
 
+    <RelativeLayout
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center_horizontal">
+
+        <ProgressBar
+            android:id="@+id/determinateBar"
+            style="@android:style/Widget.Material.Light.ProgressBar.Small"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:progress="30" />
+    </RelativeLayout>
+
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
