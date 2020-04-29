@@ -44,7 +44,6 @@ import java.util.List;
 //3.2 refresh the whole array
 
 //4.1 RESUME
-//4.2 return from intent
 //4.3 delete finished task
 public class MainActivity extends AppCompatActivity {
     TaskAdapter presAdapter;
@@ -119,18 +118,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     //4.3 delete finished task
-    public void finishingTask(String key) {
+    public void finishingTask(Task task, String key) {
         un_FirebaseRef_tasks.child(key).removeValue();
-    }
-
-    //4.2 return from intent
-    private void returnFromIntent() {
-        if (getIntent() != null) {
-            int result = (int) getIntent().getSerializableExtra("result");
-            if (result == FINISH_CODE) {
-                finishingTask((String) getIntent().getSerializableExtra("key"));
-            }
-        }
     }
 
 
@@ -160,6 +149,7 @@ public class MainActivity extends AppCompatActivity {
                     task.setKey(dataSnapshot.getKey());
                     assignText(task);
                     iniRecyclerView();
+                    finishAll.setVisibility(View.GONE);
                 }
 
                 @Override
@@ -186,6 +176,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //3.1 push data to finished task arraylist
+    private void updateFinishedTask(DataSnapshot dataSnapshot) {
+        finished_firebaseRef_tasks.push().setValue(dataSnapshot);
+    }
 
 
     //3.0 push data to firebase
@@ -206,9 +200,18 @@ public class MainActivity extends AppCompatActivity {
             if(resultCode == RESULT_OK){
                 if(tasks.size() == 1){
                     tasks.clear();
+                    finishAll.setVisibility(View.VISIBLE);
+                }else{
+                    finishAll.setVisibility(View.GONE);
                 }
-                finishingTask((String) data.getSerializableExtra("key"));
-                finishAll.setVisibility(View.VISIBLE);
+                Task task = (Task) data.getSerializableExtra("keyTask");
+                String key = task.getKey();
+                task.setKey(null);
+                task.setTaskNeededTime(0);
+                finished_firebaseRef_tasks.push().setValue(task);
+                finishingTask(task, key);
+
+
             }
         }
     }

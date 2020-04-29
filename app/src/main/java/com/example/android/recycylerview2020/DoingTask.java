@@ -91,7 +91,7 @@ public class DoingTask extends AppCompatActivity {
 
     public void taskDone(View view) {
         Intent i = new Intent(this, MainActivity.class);
-        i.putExtra("key", task.getKey());
+        i.putExtra("keyTask", task);
         setResult(RESULT_OK, i);
         finish();
     }
