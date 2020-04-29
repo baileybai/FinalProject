@@ -40,8 +40,11 @@ import java.util.List;
 
 //3.0 push data to firebase
 //3.1 add listener
+//3.2 refresh the whole array
 
 //4.1 RESUME
+//4.2 return from intent
+//4.3 delete finished task
 public class MainActivity extends AppCompatActivity {
     TaskAdapter presAdapter;
     RecyclerView recyclerView;
@@ -51,14 +54,13 @@ public class MainActivity extends AppCompatActivity {
 
     //Firebase init
     FirebaseDatabase firebaseDatabase;
-    DatabaseReference firebase_tasks;
+    DatabaseReference un_FirebaseRef_tasks, finished_firebaseRef_tasks;
     //Authentication
     private FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     ChildEventListener childEventListener;
     //Constant
     private static final int RC_SIGN_IN = 1;
-
 
 
     @Override
@@ -74,8 +76,6 @@ public class MainActivity extends AppCompatActivity {
 
         iniAdapter(tasks);
         iniRecyclerView();
-
-
 
 
         //Firebase All here:
@@ -103,31 +103,26 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-//w
-
-
         firebaseDatabase = FirebaseDatabase.getInstance();
-        firebase_tasks = firebaseDatabase.getReference().child("Task");
-
+        un_FirebaseRef_tasks = firebaseDatabase.getReference().child("un_Task");
+        finished_firebaseRef_tasks = firebaseDatabase.getReference().child("fin_Task");
 
         attachDataBaseReadListenser();
-
-
-
-
     }
 
     //4.3 delete finished task
-    void finishingTask(int pos){
 
+    public void finishingTask(View view) {
+        String key = tasks.get(0).getKey();
+        un_FirebaseRef_tasks.child(key).removeValue();
     }
 
     //4.2 return from intent
     private void returnFromIntent() {
-        if(getIntent() != null){
+        if (getIntent() != null) {
             int result = (int) getIntent().getSerializableExtra("result");
-            if(result == 1){
-                finishingTask((int)getIntent().getSerializableExtra("taskPosition"));
+            if (result == 1) {
+
 
             }
         }
@@ -143,13 +138,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    //3.2 refresh the whole array
+    void updateTheWholeArray(){
+        un_FirebaseRef_tasks.removeEventListener(childEventListener);
+        tasks.clear();
+        un_FirebaseRef_tasks.addChildEventListener(childEventListener);
+    }
+
     //3.1 add listener
     void attachDataBaseReadListenser() {
         if (childEventListener == null) {
             childEventListener = new ChildEventListener() {
                 @Override
                 public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                    assignText(dataSnapshot.getValue(Task.class));
+                    Task task = dataSnapshot.getValue(Task.class);
+                    task.setKey(dataSnapshot.getKey());
+                    assignText(task);
                     iniRecyclerView();
                 }
 
@@ -160,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
+                    updateTheWholeArray();
                 }
 
                 @Override
@@ -173,25 +177,27 @@ public class MainActivity extends AppCompatActivity {
 //                    Toast.makeText(MainActivity.this, "Error in action", Toast.LENGTH_SHORT).show();
                 }
             };
-            firebase_tasks.addChildEventListener(childEventListener);
+            un_FirebaseRef_tasks.addChildEventListener(childEventListener);
         }
     }
 
+
+
     //3.0 push data to firebase
-    void pushToFirebase(Task task){
-        firebase_tasks.push().setValue(task);
+    void pushToFirebase(Task task) {
+        un_FirebaseRef_tasks.push().setValue(task);
     }
 
     //2.0 Get new data after input
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-            if(requestCode == REQUEST_CODE){
-                if(resultCode ==RESULT_OK){
-                    Task task = (Task)data.getSerializableExtra("Return");
-                    pushToFirebase(task);
-                }
+        if (requestCode == REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                Task task = (Task) data.getSerializableExtra("Return");
+                pushToFirebase(task);
             }
+        }
     }
 
     //2.1 Assign text for display
@@ -225,6 +231,7 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(this, FinishedTaskList.class);
         startActivity(i);
     }
+
     //0.3 Create Menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -241,4 +248,5 @@ public class MainActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
 }

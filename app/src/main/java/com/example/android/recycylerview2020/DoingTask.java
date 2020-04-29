@@ -35,7 +35,7 @@ public class DoingTask extends AppCompatActivity {
         name = (TextView) findViewById(R.id.doing_field_task_name);
         updateName();
         time = (TextView) findViewById(R.id.doing_field_task_time);
-        updateTime(String.valueOf(task.getTime()));
+        updateTime(String.valueOf(task.getTaskNeededTime()));
         buttonField = (LinearLayout) findViewById(R.id.doing_field_task_button_field);
         buttonFieldVisible(false);
 
@@ -72,7 +72,7 @@ public class DoingTask extends AppCompatActivity {
 
 
     public long convertTime() {//convert time to milisecond
-        float timeDbug = task.getTime() * 60 * 1000;
+        float timeDbug = task.getTaskNeededTime() * 60 * 1000;
         return (long)timeDbug;
     }
 

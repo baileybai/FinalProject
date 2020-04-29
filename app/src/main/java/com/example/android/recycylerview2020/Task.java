@@ -1,11 +1,22 @@
 package com.example.android.recycylerview2020;
 
+import com.google.firebase.database.DatabaseReference;
+
 import java.io.Serializable;
 
 public class Task implements Serializable {
     private String name;
     private String info;
     private float taskNeededTime;
+    private String key;
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
 
     public Task(){
 
@@ -33,11 +44,11 @@ public class Task implements Serializable {
         this.info = info;
     }
 
-    public float getTime() {
+    public float getTaskNeededTime() {
         return taskNeededTime;
     }
 
-    public void setTime(float taskNeededTime) {
+    public void setTaskNeededTime(float taskNeededTime) {
         this.taskNeededTime = taskNeededTime;
     }
 }
