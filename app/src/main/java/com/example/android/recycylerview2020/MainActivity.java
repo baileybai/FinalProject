@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     public List<Task> tasks;
 
     public final int REQUEST_CODE = 1;
+    public final int FINISH_CODE = 2;
 
     //Firebase init
     FirebaseDatabase firebaseDatabase;
@@ -110,10 +111,9 @@ public class MainActivity extends AppCompatActivity {
         attachDataBaseReadListenser();
     }
 
-    //4.3 delete finished task
 
-    public void finishingTask(View view) {
-        String key = tasks.get(0).getKey();
+    //4.3 delete finished task
+    public void finishingTask(String key) {
         un_FirebaseRef_tasks.child(key).removeValue();
     }
 
@@ -121,9 +121,8 @@ public class MainActivity extends AppCompatActivity {
     private void returnFromIntent() {
         if (getIntent() != null) {
             int result = (int) getIntent().getSerializableExtra("result");
-            if (result == 1) {
-
-
+            if (result == FINISH_CODE) {
+                finishingTask((String) getIntent().getSerializableExtra("key"));
             }
         }
     }
@@ -196,6 +195,10 @@ public class MainActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 Task task = (Task) data.getSerializableExtra("Return");
                 pushToFirebase(task);
+            }
+        }else if(requestCode == FINISH_CODE){
+            if(resultCode == RESULT_OK){
+                finishingTask((String) data.getSerializableExtra("key"));
             }
         }
     }

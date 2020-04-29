@@ -20,7 +20,6 @@ public class DoingTask extends AppCompatActivity {
     TextView name, time;
     LinearLayout buttonField;
     String timeDisplay;
-//    int taskPosition;
 
     final int FINISHED_CODE = 1;
 
@@ -54,8 +53,6 @@ public class DoingTask extends AppCompatActivity {
                 buttonFieldVisible(true);
             }
         }.start();
-
-
     }
 
     private String getTimeDisplay(long millisUntilFinished) {
@@ -92,4 +89,10 @@ public class DoingTask extends AppCompatActivity {
         }
     }
 
+    public void taskDone(View view) {
+        Intent i = new Intent(this, MainActivity.class);
+        i.putExtra("key", task.getKey());
+        setResult(RESULT_OK, i);
+        finish();
+    }
 }

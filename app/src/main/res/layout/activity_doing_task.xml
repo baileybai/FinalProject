@@ -63,7 +63,8 @@
             android:textColor="#721817"
             android:textSize="24dp"
             android:textStyle="italic"
-            android:text="Finished !"/>
+            android:text="Finished"
+            android:onClick="taskDone"/>
 
         <Button
             android:layout_width="0dp"

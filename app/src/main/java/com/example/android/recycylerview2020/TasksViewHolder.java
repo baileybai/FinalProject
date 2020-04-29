@@ -1,6 +1,7 @@
 package com.example.android.recycylerview2020;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
@@ -36,12 +37,14 @@ public class TasksViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View v) {
 
+
+
                 Intent i = new Intent(v.getContext(), DoingTask.class);
                 Task storedTask = tasks.get(getAdapterPosition());
                 i.putExtra("taskInfo", tasks.get(getAdapterPosition()));
                 Toast.makeText(context, "New Task added!", Toast.LENGTH_SHORT).show();
-                v.getContext().startActivity(i);
-
+//                v.getContext().startActivity(i);
+                ((Activity) v.getContext()).startActivityForResult(i, 2);
             }
         });
     }
