@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -53,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
     public final int REQUEST_CODE = 1;
     public final int FINISH_CODE = 2;
 
+    TextView finishAll;
+
     //Firebase init
     FirebaseDatabase firebaseDatabase;
     DatabaseReference un_FirebaseRef_tasks, finished_firebaseRef_tasks;
@@ -68,6 +71,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        finishAll = (TextView)findViewById(R.id.finishAllTask);
+        finishAll.setVisibility(View.GONE);
 
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
@@ -198,7 +204,11 @@ public class MainActivity extends AppCompatActivity {
             }
         }else if(requestCode == FINISH_CODE){
             if(resultCode == RESULT_OK){
+                if(tasks.size() == 1){
+                    tasks.clear();
+                }
                 finishingTask((String) data.getSerializableExtra("key"));
+                finishAll.setVisibility(View.VISIBLE);
             }
         }
     }

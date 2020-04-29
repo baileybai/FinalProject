@@ -23,28 +23,44 @@
         android:textColor="#221684"
         android:textStyle="bold" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="531dp"
-        android:layout_marginBottom="10dp"
-        android:layout_weight="1"
-        android:background="#D6ECFF" />
 
-        <Button
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:background="#D6ECFF" />
+
+        <TextView
+            android:id="@+id/finishAllTask"
             android:layout_width="wrap_content"
-            android:layout_height="72dp"
-            android:layout_gravity="center"
-            android:background="@drawable/roundedborder"
-            android:backgroundTint="#FE6347"
-            android:fadingEdge="horizontal|vertical|none"
-            android:fontFamily="casual"
-            android:onClick="FinishedTasks"
-            android:padding="10dp"
-            android:text="Finished tasks"
-            android:textColor="#221684"
-            android:textSize="24dp"
-            android:textStyle="italic" />
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="You have finished all"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/roundedborder"
+        android:backgroundTint="#FE6347"
+        android:fadingEdge="horizontal|vertical|none"
+        android:fontFamily="casual"
+        android:onClick="FinishedTasks"
+        android:padding="10dp"
+        android:text="Finished tasks"
+        android:textColor="#221684"
+        android:textSize="24dp"
+        android:textStyle="italic" />
 
 </LinearLayout>
 
