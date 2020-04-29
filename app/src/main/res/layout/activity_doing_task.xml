@@ -24,16 +24,15 @@
         android:layout_height="150dp"
         android:layout_gravity="center_horizontal">
 
-        <ProgressBar
-            android:id="@+id/determinateBar"
-            style="@android:style/Widget.Material.Light.ProgressBar.Small"
+
+
+        <com.example.android.recycylerview2020.TimerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
-            android:progress="30" />
+            android:id="@+id/timer"
+            app:circleColor="@color/timer_circle"/>
+
+
     </RelativeLayout>
 
 

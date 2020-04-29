@@ -22,6 +22,7 @@ public class DoingTask extends AppCompatActivity {
     String timeDisplay;
 
     final int FINISHED_CODE = 1;
+    TimerView mTimerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,9 @@ public class DoingTask extends AppCompatActivity {
         setContentView(R.layout.activity_doing_task);
         Intent m = getIntent();
         task = (Task) getIntent().getSerializableExtra("taskInfo");
-//        taskPosition = (int)getIntent().getSerializableExtra("taskPosition");
+
+        mTimerView = (TimerView)findViewById(R.id.timer);
+
 
         name = (TextView) findViewById(R.id.doing_field_task_name);
         updateName();
@@ -42,6 +45,8 @@ public class DoingTask extends AppCompatActivity {
     }
 
     private void startCountingDown() {
+        mTimerView.start((int)(task.getTaskNeededTime() * 60));
+
         CountDownTimer timer = new CountDownTimer(convertTime(), 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -64,11 +69,12 @@ public class DoingTask extends AppCompatActivity {
             timeForDisplay += "0";
         }
         timeForDisplay += secondLeft;
+
         return timeForDisplay;
     }
 
 
-    public long convertTime() {//convert time to milisecond
+    public long convertTime() {//convert time in minute to milisecond
         float timeDbug = task.getTaskNeededTime() * 60 * 1000;
         return (long)timeDbug;
     }
@@ -95,4 +101,6 @@ public class DoingTask extends AppCompatActivity {
         setResult(RESULT_OK, i);
         finish();
     }
+
+
 }
