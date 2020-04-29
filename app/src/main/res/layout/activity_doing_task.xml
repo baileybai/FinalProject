@@ -5,15 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DoingTask"
+    android:background="#D6ECFF"
     android:orientation="vertical"
     android:paddingTop="40dp">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Breakfast"
+        android:id="@+id/doing_field_task_name"
         style="@style/title"
-        android:id="@+id/doing_field_task_name"/>
+        android:layout_width="match_parent"
+        android:layout_height="84dp"
+        android:fontFamily="casual"
+        android:text="Breakfast"
+        android:textColor="#FDABDF"
+        android:textStyle="bold" />
 
     <RelativeLayout
         android:layout_width="150dp"
@@ -25,16 +29,21 @@
             style="@android:style/Widget.Material.Light.ProgressBar.Small"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
             android:progress="30" />
     </RelativeLayout>
 
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/doing_field_task_time"
         style="@style/title"
-        android:text="15: 00"
-        android:id="@+id/doing_field_task_time"/>
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:fontFamily="cursive"
+        android:text="15: 00" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -48,13 +57,25 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Finished"/>
+            android:background="@drawable/roundedborder"
+            android:backgroundTint="#E1D9D7"
+            android:fontFamily="casual"
+            android:textColor="#721817"
+            android:textSize="24dp"
+            android:textStyle="italic"
+            android:text="Finished !"/>
 
         <Button
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Not Finished"/>
+            android:text="Not Yet"
+            android:background="@drawable/roundedborder"
+            android:backgroundTint="#E1D9D7"
+            android:fontFamily="casual"
+            android:textColor="#721817"
+            android:textSize="24dp"
+            android:textStyle="italic"/>
 
     </LinearLayout>
 
