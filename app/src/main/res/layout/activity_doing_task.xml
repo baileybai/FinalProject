@@ -75,7 +75,8 @@
             android:fontFamily="casual"
             android:textColor="#721817"
             android:textSize="24dp"
-            android:textStyle="italic"/>
+            android:textStyle="italic"
+            android:visibility="gone"/>
 
     </LinearLayout>
 

@@ -23,6 +23,7 @@ public class TasksViewHolder extends RecyclerView.ViewHolder {
     private TextView taskInfoView;
     private Context context;
     List<Task> tasks;
+    int displayIndex = 1;
 
     @SuppressLint("WrongViewCast")
     public TasksViewHolder(View itemView, final Context context) {
@@ -36,17 +37,19 @@ public class TasksViewHolder extends RecyclerView.ViewHolder {
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (displayIndex == 1) {
+                    Intent i = new Intent(v.getContext(), DoingTask.class);
+                    Task storedTask = tasks.get(getAdapterPosition());
+                    i.putExtra("taskInfo", tasks.get(getAdapterPosition()));
+                    ((Activity) v.getContext()).startActivityForResult(i, 2);
+                }else {
 
-
-
-                Intent i = new Intent(v.getContext(), DoingTask.class);
-                Task storedTask = tasks.get(getAdapterPosition());
-                i.putExtra("taskInfo", tasks.get(getAdapterPosition()));
-                Toast.makeText(context, "New Task added!", Toast.LENGTH_SHORT).show();
-//                v.getContext().startActivity(i);
-                ((Activity) v.getContext()).startActivityForResult(i, 2);
+                }
             }
         });
+    }
+    public void updateIndex(int i){
+        displayIndex = i;
     }
 
     public TextView getTaskNameView() {

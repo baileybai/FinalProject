@@ -15,10 +15,12 @@ import androidx.recyclerview.widget.RecyclerView;
 public class TaskAdapter extends RecyclerView.Adapter<TasksViewHolder> {
     private List<Task> tasks;
     private Context context;
+    int index;
 
-    public TaskAdapter(List<Task> tasks, Context context) {
+    public TaskAdapter(List<Task> tasks, Context context, int index) {
         this.tasks = tasks;
         this.context = context;
+        this.index = index;
     }
 
     @Override
@@ -38,6 +40,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TasksViewHolder> {
         holder.getTaskTimeView().setText(String.valueOf(task.getTaskNeededTime()));
         holder.getTaskInfoView().setText(task.getInfo());
         holder.iniTasks(tasks);
+        holder.displayIndex = index;
     }
 
     @Override

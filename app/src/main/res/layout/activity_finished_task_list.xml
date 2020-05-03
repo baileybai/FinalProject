@@ -4,24 +4,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".FinishedTaskList"
-    android:orientation="vertical">
+    style="@style/title">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:text="Finished Task"/>
+        android:text="Finished Task"
+        style="@style/title"
+        android:textAlignment="center" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_in_finished"
         android:layout_width="match_parent"
         android:layout_height="531dp"
-        android:layout_weight="1"
-        android:background="#D6ECFF"
         android:layout_marginBottom="10dp"
-        />
+        android:layout_weight="1"
+        android:background="#D6ECFF" />
 
 
-
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Clear"
+        android:background="@drawable/roundedborder"
+        android:backgroundTint="#FE6347"
+        android:fadingEdge="horizontal|vertical|none"
+        android:fontFamily="casual"
+        android:padding="10dp"
+        android:textColor="#221684"
+        android:textSize="24dp"
+        android:textStyle="italic"
+        android:layout_gravity="center"
+        android:onClick="clearAllTask"/>
 </LinearLayout>

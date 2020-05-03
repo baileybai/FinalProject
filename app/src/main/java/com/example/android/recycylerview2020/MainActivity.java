@@ -75,13 +75,13 @@ public class MainActivity extends AppCompatActivity {
         finishAll.setVisibility(View.GONE);
 
         recyclerView = findViewById(R.id.recycler_view);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        recyclerView.setHasFixedSize(true);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         tasks = new ArrayList<>();
 
         iniAdapter(tasks);
-        iniRecyclerView();
+//        iniRecyclerView();
 
 
         //Firebase All here:
@@ -223,16 +223,16 @@ public class MainActivity extends AppCompatActivity {
 
     //1.2 update recycler view with new tasks
     private void iniRecyclerView() {
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        recyclerView.setHasFixedSize(true);
+//        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+//        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(presAdapter);
     }
 
     //1.1 initialize data in adapter
     private void iniAdapter(List<Task> tasks) {
-        presAdapter = new TaskAdapter(tasks, this);
-        recyclerView.setAdapter(presAdapter);
+        presAdapter = new TaskAdapter(tasks, this, 1);
+//        recyclerView.setAdapter(presAdapter);
     }
 
 
